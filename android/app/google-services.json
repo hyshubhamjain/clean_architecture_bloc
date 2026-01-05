@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316157001768",
+    "project_id": "jainebook",
+    "storage_bucket": "jainebook.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316157001768:android:ecd1d42f38e7e97a9c751d",
+        "android_client_info": {
+          "package_name": "shubhamjain.space.jainebook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBPTUk6GxEATHWOPqLxvD-GJWZVMuQFAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
