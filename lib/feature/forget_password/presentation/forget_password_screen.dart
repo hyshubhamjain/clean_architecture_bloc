@@ -1,47 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:jainebook/core/widget/widget.dart';
 
-class ForgetPasswordScreen extends StatelessWidget {
+class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    var emailController = TextEditingController();
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+}
 
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+  late TextEditingController emailController;
+  late final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Forget Password')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Forgot your password?',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Please enter your email to reset your password',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 16),
-            CustomTextField(
-              labelText: 'Enter your Email id',
-              hintText: 'Enter your email',
-              prefixIcon: const Icon(Icons.email),
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 10),
-            CustomButton(
-              onPressed: () {
-                // Handle forget password logic here
-              },
-              child: const Text('Submit'),
-            ),
-            const SizedBox(height: 10),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Forgot your password?',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Please enter your email to reset your password',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 16),
+              CustomTextField(
+                labelText: 'Enter your Email id',
+                hintText: 'Enter your email',
+                prefixIcon: const Icon(Icons.email),
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                  if (!emailRegex.hasMatch(value)) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
+              CustomButton(
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    // Handle forget password logic here
+                  }
+                },
+                child: const Text('Submit'),
+              ),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );
