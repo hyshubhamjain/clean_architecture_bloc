@@ -3,7 +3,8 @@ import 'package:jainebook/core/service_locator.dart';
 import 'package:jainebook/jain_e_book.dart';
 
 void main() async{
-  setupLocator();
+  await setupLocator();
   runApp(JainEBook());
 }
 
+  

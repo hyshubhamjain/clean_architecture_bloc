@@ -10,7 +10,7 @@ import 'package:jainebook/router/app_router.dart';
 
 GetIt sLocator = GetIt.instance;
 
-void setupLocator() async{
+Future<void> setupLocator() async {
   // Register your services here
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
