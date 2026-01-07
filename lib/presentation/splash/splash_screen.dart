@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:jainebook/core/service_locator.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jainebook/presentation/home/dashboard_screen.dart';
 import 'package:jainebook/presentation/login/login_screen.dart';
 
-import '../../router/app_router.dart';
+import 'bloc/splash_bloc.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    // Simulate some initialization work
-    Future.delayed(const Duration(seconds: 3), () {
-      // Navigate to the next screen after the splash screen
-      sLocator.get<AppRouter>().pushNamed(LoginScreen.screenName);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            CircularProgressIndicator(),
-            SizedBox(height: 20),
-            Text('Loading...'),
-          ],
+    return BlocListener<SplashBloc, SplashState>(
+      listener: (context, state) {
+        state.when(
+          initial: () {},
+          authenticated: () {
+            Navigator.of(
+              context,
+            ).pushReplacementNamed(DashboardScreen.screenName);
+          },
+          unauthenticated: () {
+            Navigator.of(context).pushReplacementNamed(LoginScreen.screenName);
+          },
+        );
+      },
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text('Loading...'),
+            ],
+          ),
         ),
       ),
     );

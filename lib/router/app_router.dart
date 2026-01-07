@@ -6,6 +6,7 @@ import 'package:jainebook/presentation/login/bloc/login_bloc.dart';
 import 'package:jainebook/presentation/login/login_screen.dart';
 import 'package:jainebook/presentation/registration/bloc/registration_bloc.dart';
 import 'package:jainebook/presentation/registration/sign_up_screen.dart';
+import 'package:jainebook/presentation/splash/bloc/splash_bloc.dart';
 import 'package:jainebook/presentation/splash/splash_screen.dart';
 
 import '../presentation/forget_password/bloc/forget_password_bloc.dart';
@@ -69,7 +70,14 @@ class AppRouter {
       case DashboardScreen.screenName:
         return MaterialPageRoute(builder: (_) => DashboardScreen());
       default:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sLocator.get<SplashBloc>()
+                  ..add(SplashEvent.checkAuthentication()),
+            child: SplashScreen(),
+          ),
+        );
     }
   }
 }

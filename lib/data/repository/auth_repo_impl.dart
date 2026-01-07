@@ -71,4 +71,25 @@ class AuthRepoImpl extends AuthRepo {
   Future<void> signOut() async {
     await firebaseAuth.signOut();
   }
+
+  @override
+  Future<Either<Failure, bool>> getUserStatus() {
+    try {
+      var user = firebaseAuth.currentUser;
+      if (user != null) {
+        return Future.value(Right(true));
+      } else {
+        return Future.value(Right(false));
+      }
+    } catch (e) {
+      return Future.value(
+        Left(
+          Failure(
+            code: ResponseCode.UNKNOWN,
+            message: 'Failed to get user status',
+          ),
+        ),
+      );
+    }
+  }
 }

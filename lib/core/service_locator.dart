@@ -4,8 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:jainebook/domain/usecase/user_information/is_user_authenticated_use_case.dart';
 import 'package:jainebook/firebase_options.dart';
 import 'package:jainebook/presentation/login/bloc/login_bloc.dart';
+import 'package:jainebook/presentation/splash/bloc/splash_bloc.dart';
 import 'package:jainebook/router/app_router.dart';
 
 import '../data/repository/repo_imp.dart';
@@ -27,12 +29,6 @@ Future<void> setupLocator() async {
   setupRepositories();
   setupUseCases();
   setupBlocs();
-}
-
-void setupBlocs() async {
-  sLocator.registerFactory(() => LoginBloc(sLocator.get()));
-  sLocator.registerFactory(() => RegistrationBloc(sLocator.get()));
-  sLocator.registerFactory(() => ForgetPasswordBloc(sLocator.get()));
 }
 
 void setupRepositories() async {
@@ -57,4 +53,16 @@ void setupUseCases() async {
   sLocator.registerLazySingleton<FetchUserInfoUseCase>(
     () => FetchUserInfoUseCase(),
   );
+  sLocator.registerLazySingleton<IsUserAuthenticatedUseCase>(
+    () => IsUserAuthenticatedUseCase(sLocator.get()),
+  );
+}
+
+void setupBlocs() async {
+  sLocator.registerFactory(
+    () => SplashBloc(sLocator.get<IsUserAuthenticatedUseCase>()),
+  );
+  sLocator.registerFactory(() => LoginBloc(sLocator.get()));
+  sLocator.registerFactory(() => RegistrationBloc(sLocator.get()));
+  sLocator.registerFactory(() => ForgetPasswordBloc(sLocator.get()));
 }
