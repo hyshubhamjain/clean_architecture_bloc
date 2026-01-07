@@ -31,8 +31,22 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<void> sendPasswordResetEmail(String email) async {
-    await firebaseAuth.sendPasswordResetEmail(email: email);
+  Future<Either<Failure, void>> sendPasswordResetEmail(String email) async {
+    try {
+      await firebaseAuth.sendPasswordResetEmail(email: email);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        Failure(
+          code: ResponseCode.UNKNOWN,
+          message: e.message ?? 'Password reset failed',
+        ),
+      );
+    } catch (e) {
+      return Left(
+        Failure(code: ResponseCode.UNKNOWN, message: 'Password reset failed'),
+      );
+    }
   }
 
   @override

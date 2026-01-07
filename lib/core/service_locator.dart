@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jainebook/firebase_options.dart';
+import 'package:jainebook/presentation/login/bloc/login_bloc.dart';
 import 'package:jainebook/router/app_router.dart';
 
 import '../data/repository/repo_imp.dart';
 import '../domain/repository/repo.dart';
 import '../domain/usecase/use_case.dart';
+import '../presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../presentation/registration/bloc/registration_bloc.dart';
 
 GetIt sLocator = GetIt.instance;
@@ -28,8 +30,9 @@ Future<void> setupLocator() async {
 }
 
 void setupBlocs() async {
-  // sLocator.registerFactory(() => LoginBloc(sLocator.get()));
+  sLocator.registerFactory(() => LoginBloc(sLocator.get()));
   sLocator.registerFactory(() => RegistrationBloc(sLocator.get()));
+  sLocator.registerFactory(() => ForgetPasswordBloc(sLocator.get()));
 }
 
 void setupRepositories() async {

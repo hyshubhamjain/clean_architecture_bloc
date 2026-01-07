@@ -5,7 +5,7 @@ import 'package:jainebook/data/model/user_model.dart';
 abstract class AuthRepo {
   Future<void> signOut();
   Future<String?> getCurrentUserId();
-  Future<void> sendPasswordResetEmail(String email);
+  Future<Either<Failure, void>> sendPasswordResetEmail(String email);
   Future<Either<Failure, UserModel>> createUserWithEmailAndPassword(
     String email,
     String password,
