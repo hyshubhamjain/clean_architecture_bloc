@@ -4,7 +4,7 @@ import 'package:jainebook/router/app_router.dart';
 import 'package:jainebook/core/service_locator.dart';
 
 import '../../forget_password/presentation/forget_password_screen.dart';
-import '../../registratio/presentation/sign_up_screen.dart';
+import '../../registration/presentation/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const screenName = "/login";

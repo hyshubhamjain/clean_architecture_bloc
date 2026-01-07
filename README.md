@@ -1,4 +1,4 @@
-# jainebook
+# E-book with Flutter and Bloc with clean architecture 
 
 A Flutter-based digital eBook platform for Jain literature.
 
