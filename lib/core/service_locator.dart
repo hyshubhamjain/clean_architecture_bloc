@@ -8,7 +8,9 @@ import 'package:jainebook/firebase_options.dart';
 import 'package:jainebook/router/app_router.dart';
 
 import '../data/repository/repo_imp.dart';
+import '../domain/repository/repo.dart';
 import '../domain/usecase/use_case.dart';
+import '../presentation/registration/bloc/registration_bloc.dart';
 
 GetIt sLocator = GetIt.instance;
 
@@ -22,11 +24,17 @@ Future<void> setupLocator() async {
   sLocator.registerLazySingleton(() => AppRouter());
   setupRepositories();
   setupUseCases();
+  setupBlocs();
+}
+
+void setupBlocs() async {
+  // sLocator.registerFactory(() => LoginBloc(sLocator.get()));
+  sLocator.registerFactory(() => RegistrationBloc(sLocator.get()));
 }
 
 void setupRepositories() async {
-  sLocator.registerLazySingleton(() => AuthRepoImpl());
-  sLocator.registerLazySingleton(() => UserRepoImpl());
+  sLocator.registerLazySingleton<AuthRepo>(() => AuthRepoImpl());
+  sLocator.registerLazySingleton<UserRepo>(() => UserRepoImpl());
 }
 
 void setupUseCases() async {

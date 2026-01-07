@@ -3,7 +3,7 @@ import 'package:jainebook/core/widget/widget.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
-
+  static const String screenName = 'ForgetPasswordScreen';
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jainebook/core/service_locator.dart';
-import 'package:jainebook/presentation/login/presentation/login_screen.dart';
+import 'package:jainebook/presentation/login/login_screen.dart';
 
-import '../../../router/app_router.dart';
+import '../../router/app_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // Simulate some initialization work
     Future.delayed(const Duration(seconds: 3), () {
       // Navigate to the next screen after the splash screen
-      sLocator.get<AppRouter>().pushReplacement(LoginScreen());
+      sLocator.get<AppRouter>().pushNamed(LoginScreen.screenName);
     });
   }
 

@@ -3,8 +3,8 @@ import 'package:jainebook/core/widget/widget.dart';
 import 'package:jainebook/router/app_router.dart';
 import 'package:jainebook/core/service_locator.dart';
 
-import '../../forget_password/presentation/forget_password_screen.dart';
-import '../../registration/presentation/sign_up_screen.dart';
+import '../forget_password/forget_password_screen.dart';
+import '../registration/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const screenName = "/login";
@@ -116,7 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      sLocator.get<AppRouter>().push(SignUpScreen());
+                      sLocator.get<AppRouter>().pushNamed(
+                        SignUpScreen.screenName,
+                      );
                     },
                     child: Text(
                       "Sign Up",
@@ -138,7 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      sLocator.get<AppRouter>().push(ForgetPasswordScreen());
+                      sLocator.get<AppRouter>().pushNamed(
+                        ForgetPasswordScreen.screenName,
+                      );
                     },
                     child: Text(
                       "Reset Password",

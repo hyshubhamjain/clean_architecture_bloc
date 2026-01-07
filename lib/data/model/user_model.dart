@@ -13,6 +13,22 @@ abstract class UserModel with _$UserModel {
     DateTime? createdAt,
   }) = _UserModel;
 
+  factory UserModel.create({
+    String? id,
+    String? name,
+    String? email,
+    String? phoneNumber,
+    DateTime? createdAt,
+  }) {
+    return UserModel(
+      id: id,
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      createdAt: createdAt ?? DateTime.now(),
+    );
+  }
+
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 }

@@ -23,7 +23,14 @@ class RegistrationUseCase
           return Left(failure);
         },
         (userModel) async {
-          var saveResult = await saveUserInfoUseCase.execute(userModel);
+          var saveResult = await saveUserInfoUseCase.execute(
+            UserModel.create(
+              id: userModel.id,
+              email: input.email,
+              name: input.name,
+              phoneNumber: input.phoneNumber,
+            ),
+          );
           return saveResult.fold<Either<Failure, UserModel>>(
             (failure) => Left(failure),
             (r) => Right(userModel),
@@ -39,5 +46,12 @@ class RegistrationUseCase
 class RegistrationUseCaseInput {
   String email;
   String password;
-  RegistrationUseCaseInput(this.email, this.password);
+  String name;
+  String phoneNumber;
+  RegistrationUseCaseInput(
+    this.email,
+    this.password,
+    this.name,
+    this.phoneNumber,
+  );
 }

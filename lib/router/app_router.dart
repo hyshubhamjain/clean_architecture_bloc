@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jainebook/core/service_locator.dart';
+import 'package:jainebook/presentation/login/login_screen.dart';
+import 'package:jainebook/presentation/registration/bloc/registration_bloc.dart';
+import 'package:jainebook/presentation/registration/sign_up_screen.dart';
+import 'package:jainebook/presentation/splash/splash_screen.dart';
+
+import '../presentation/forget_password/forget_password_screen.dart';
 
 class AppRouter {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   NavigatorState? get navigator => navigatorKey.currentState;
-  
+
   void pop<T>([T? result]) {
     navigator?.pop(result);
   }
@@ -28,5 +36,25 @@ class AppRouter {
       MaterialPageRoute(builder: (_) => page),
       (route) => false,
     );
+  }
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    // Define your route generation logic here
+    // Example:
+    switch (settings.name) {
+      case LoginScreen.screenName:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case SignUpScreen.screenName:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) => sLocator.get<RegistrationBloc>(),
+            child: SignUpScreen(),
+          ),
+        );
+      case ForgetPasswordScreen.screenName:
+        return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
+      default:
+        return MaterialPageRoute(builder: (_) => SplashScreen());
+    }
   }
 }

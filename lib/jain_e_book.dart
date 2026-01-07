@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jainebook/core/service_locator.dart';
-import 'package:jainebook/presentation/splash/presentation/splash_screen.dart';
-
 import 'router/app_router.dart';
 
 class JainEBook extends StatelessWidget {
@@ -14,7 +12,7 @@ class JainEBook extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Jain E-Book',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const SplashScreen(),
+      onGenerateRoute: sLocator.get<AppRouter>().generateRoute,
     );
   }
 }
