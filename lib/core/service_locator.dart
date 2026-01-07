@@ -51,4 +51,10 @@ void setupUseCases() async {
   sLocator.registerLazySingleton<SaveUserInfoUseCase>(
     () => SaveUserInfoUseCase(sLocator.get()),
   );
+  sLocator.registerLazySingleton<ForgetPasswordUseCase>(
+    () => ForgetPasswordUseCase(sLocator.get()),
+  );
+  sLocator.registerLazySingleton<FetchUserInfoUseCase>(
+    () => FetchUserInfoUseCase(),
+  );
 }
