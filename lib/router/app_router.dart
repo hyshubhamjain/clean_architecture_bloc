@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jainebook/core/service_locator.dart';
+import 'package:jainebook/presentation/home/bloc/dashboard_bloc.dart';
 import 'package:jainebook/presentation/home/dashboard_screen.dart';
 import 'package:jainebook/presentation/login/bloc/login_bloc.dart';
 import 'package:jainebook/presentation/login/login_screen.dart';
@@ -68,7 +69,12 @@ class AppRouter {
           ),
         );
       case DashboardScreen.screenName:
-        return MaterialPageRoute(builder: (_) => DashboardScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => sLocator.get<DashboardBloc>(),
+            child: DashboardScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
