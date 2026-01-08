@@ -5,7 +5,7 @@ import 'package:jainebook/domain/usecase/use_case.dart';
 
 import '../../../data/model/model.dart';
 
-class UserLogoutUseCase extends NoParamUseCase<bool> {
+class UserLogoutUseCase extends NoParamUseCase {
   final FirebaseAuth auth = sLocator.get<FirebaseAuth>();
 
   @override
