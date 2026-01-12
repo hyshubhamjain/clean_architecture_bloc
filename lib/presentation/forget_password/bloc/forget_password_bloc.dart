@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/usecase/use_case.dart';
 
@@ -7,6 +8,7 @@ part 'forget_password_event.dart';
 part 'forget_password_state.dart';
 part 'forget_password_bloc.freezed.dart';
 
+@injectable
 class ForgetPasswordBloc
     extends Bloc<ForgetPasswordEvent, ForgetPasswordState> {
   final ForgetPasswordUseCase forgetPasswordUseCase;

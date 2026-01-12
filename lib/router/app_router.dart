@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:jainebook/core/service_locator.dart';
 import 'package:jainebook/presentation/home/bloc/dashboard_bloc.dart';
 import 'package:jainebook/presentation/home/dashboard_screen.dart';
@@ -13,6 +14,7 @@ import 'package:jainebook/presentation/splash/splash_screen.dart';
 import '../presentation/forget_password/bloc/forget_password_bloc.dart';
 import '../presentation/forget_password/forget_password_screen.dart';
 
+@lazySingleton
 class AppRouter {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

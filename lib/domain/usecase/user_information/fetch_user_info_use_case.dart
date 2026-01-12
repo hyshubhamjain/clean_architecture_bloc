@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:jainebook/core/service_locator.dart';
 import 'package:jainebook/domain/usecase/use_case.dart';
 
 import '../../../data/model/model.dart';
 
+@injectable
 class FetchUserInfoUseCase extends BaseUseCase<String, UserModel> {
   final FirebaseFirestore firestore = sLocator.get<FirebaseFirestore>();
 

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../domain/usecase/use_case.dart';
 
@@ -7,6 +8,7 @@ part 'registration_event.dart';
 part 'registration_state.dart';
 part 'registration_bloc.freezed.dart';
 
+@injectable
 class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
   final RegistrationUseCase registrationUseCase;
 

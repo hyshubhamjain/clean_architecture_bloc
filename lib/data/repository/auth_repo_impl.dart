@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:jainebook/core/service_locator.dart';
 import 'package:jainebook/data/model/failure.dart';
 import 'package:jainebook/data/model/user_model.dart';
 import 'package:jainebook/domain/repository/auth_repo.dart';
 
+@Injectable(as: AuthRepo)
 class AuthRepoImpl extends AuthRepo {
   var firebaseAuth = sLocator.get<FirebaseAuth>();
   @override

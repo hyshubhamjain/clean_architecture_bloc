@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:jainebook/core/service_locator.dart';
 import 'package:jainebook/data/model/failure.dart';
 import 'package:jainebook/data/model/user_model.dart';
 
 import '../../domain/repository/user_repo.dart';
 
+@Injectable(as: UserRepo)
 class UserRepoImpl extends UserRepo {
   final FirebaseFirestore firestore = sLocator.get<FirebaseFirestore>();
 

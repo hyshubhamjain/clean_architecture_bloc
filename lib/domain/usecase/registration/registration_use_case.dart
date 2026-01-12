@@ -1,8 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:jainebook/data/model/model.dart';
 import 'package:jainebook/domain/usecase/use_case.dart';
 import '../../repository/repo.dart';
 
+@injectable
 class RegistrationUseCase
     extends BaseUseCase<RegistrationUseCaseInput, UserModel> {
   final AuthRepo authRepo;

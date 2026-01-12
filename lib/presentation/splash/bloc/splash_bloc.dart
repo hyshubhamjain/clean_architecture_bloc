@@ -1,11 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import '../../../domain/usecase/user_information/is_user_authenticated_use_case.dart';
 
 part 'splash_state.dart';
 part 'splash_event.dart';
 part 'splash_bloc.freezed.dart';
 
+@injectable
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final IsUserAuthenticatedUseCase isUserAuthenticatedUseCase;
 
